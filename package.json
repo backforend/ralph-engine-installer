@@ -1,0 +1,10 @@
+{
+  "name": "ralph-engine-installer",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Semantic Release runtime for the ralph-engine-installer distribution pipeline (versioning + changelog only; the product itself is a shell script, not npm).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backforend/ralph-engine-installer.git"
+  }
+}
