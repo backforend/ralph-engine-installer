@@ -1,0 +1,45 @@
+# Copyright (C) 2026 MAX JEISON PRASS TECNOLOGIA LTDA (CNPJ 26.360.770/0001-39)
+# All rights reserved.
+# PROPRIETARY AND CONFIDENTIAL.
+# No part of this software may be reproduced, distributed, or transmitted
+# in any form or by any means without express written permission.
+
+name: release
+
+# ADR-003 (holding): pipeline unificado — um único workflow disparado por push em
+# `master` (release estável) e `dev` (pré-release beta). O semantic-release deriva
+# versão/CHANGELOG/tag/Release dos Conventional Commits. A holding (backforend) não
+# embarca imagens OCI nem binários Go, então este workflow replica apenas o job de
+# versionamento do ralph-engine — os jobs `build-push` (Docker/cosign) e
+# `release-cli` (binários Go) não se aplicam aqui. `feat/*`/`fix/*` não disparam nada.
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          semantic_version: 24
+          extra_plugins: |
+            @semantic-release/changelog@6.0.3
+            @semantic-release/git@10.0.1
