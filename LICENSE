@@ -1,0 +1,37 @@
+Copyright (C) 2026 MAX JEISON PRASS TECNOLOGIA LTDA (CNPJ 26.360.770/0001-39)
+All rights reserved.
+
+RALPH-ENGINE INSTALLER — SOURCE-AVAILABLE LICENSE
+
+This license covers ONLY the installer script ("install.sh") and the
+accompanying README in this repository (together, the "Installer"). The
+Installer is a thin download-and-verify bootstrap for the ralph-engine CLI.
+
+1. GRANT
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of the Installer, to use, copy, and distribute the Installer solely for the
+   purpose of downloading, verifying, and installing the ralph-engine CLI,
+   subject to the conditions below.
+
+2. CONDITIONS
+   a. The above copyright notice and this permission notice shall be included
+      in all copies or substantial portions of the Installer.
+   b. The Installer must not be modified in any way that removes or weakens the
+      authenticity checks (SHA256 checksum and cosign signature verification).
+
+3. NO LICENSE TO THE ENGINE
+   This license grants NO right, license, or interest in or to the ralph-engine
+   CLI, its source code, documentation, AI prompts, skills, workflow
+   orchestrators, or any other intellectual property of the ralph-engine (the
+   "Engine"). The Engine is proprietary and confidential, constitutes a trade
+   secret under Brazilian Law No. 9.279/96, and is licensed separately under an
+   End-User License Agreement (EULA) and a license key (license.lic). Any
+   reverse engineering, decompilation, extraction, or redistribution of the
+   Engine is strictly prohibited.
+
+4. DISCLAIMER
+   THE INSTALLER IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH THE INSTALLER.
