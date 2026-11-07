@@ -37,7 +37,10 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PAT de usuário bot (na bypass list do ruleset) — GITHUB_TOKEN é
+          # `github-actions[bot]`, que não pode ser adicionado à bypass list e é
+          # bloqueado pela regra "Require pull request" (GH013).
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           semantic_version: 24
           extra_plugins: |
