@@ -1,0 +1,11 @@
+Feature: 2026-11-15-5-r038-installer
+Project: ralph-engine-installer
+Branch: ralph/r038-installer
+Description: R-038 (2/2) — install.sh download nativo via API de assets + README
+Completed: 2026-11-15
+
+Stories:
+- [x] US-001: install.sh download nativo via API de assets + token via env/stdin
+- [x] US-002: README.md documenta token via env/stdin
+
+Pending validation: US-002
