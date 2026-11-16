@@ -23,3 +23,7 @@ PROPRIETARY AND CONFIDENTIAL.
 - Default do canal é `beta` enquanto o produto estiver em Beta — ADR-026 D4.
 - **Nunca** commitar secrets, PATs ou tokens.
 - Header de copyright obrigatório em `install.sh` (backforend-copyright §5.1).
+- **Parsing JSON do GitHub sem `jq`:** extrair `"url"`/`"name"` via
+  `grep -oE '"(url|name)":[[:space:]]*("[^"]*"|null)'` ANTES do `awk` linha-a-linha
+  (GitHub retorna JSON compacto de uma linha; `awk` com `next` sobre uma única linha
+  não itera os campos).

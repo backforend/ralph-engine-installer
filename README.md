@@ -63,11 +63,20 @@ O motor roda em **4 serviços** Docker orquestrados pelo CLI:
 Instale o `ralph-engine-cli` no seu host executando no terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/backforend/ralph-engine-installer/dev/install.sh | bash -s -- --token <PAT>
+# 1. Exporte o token de download (fornecido pela Backforend)
+export RALPH_DOWNLOAD_TOKEN="<PAT>"
+
+# 2. Baixe e execute o instalador
+curl -fsSL https://raw.githubusercontent.com/backforend/ralph-engine-installer/dev/install.sh | bash
 ```
 
-- `<PAT>` é o token de download do binário (repo privado), **fornecido pela
-  Backforend** junto com a sua `license.lic`.
+- `<PAT>` é o token de download do binário (repo privado
+  **`backforend/ralph-engine-releases`**), **fornecido pela Backforend** junto com
+  a sua `license.lic`.
+- O instalador lê o token da variável de ambiente `RALPH_DOWNLOAD_TOKEN` (ou, se
+  ausente, do stdin) — nunca de argumentos da linha de comando, para não vazar em
+  `ps` nem no histórico do shell. No fluxo `curl ... | bash` use a env: o stdin é
+  ocupado pelo próprio script.
 - Use a URL `raw.githubusercontent.com` — o link `github.com/.../blob/...`
   retorna HTML e não funciona com `curl`.
 - O binário é instalado em `~/.local/bin`.
