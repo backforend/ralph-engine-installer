@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/backforend/ralph-engine-installer/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2026-11-24)
+
+
+### Bug Fixes
+
+* resolver canal beta por published_at em vez da ordem da API ([48870e1](https://github.com/backforend/ralph-engine-installer/commit/48870e1b0920d322cb75bf4746616198768c172b))
+
 # [1.0.0-beta.2](https://github.com/backforend/ralph-engine-installer/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2026-11-16)
 
 
