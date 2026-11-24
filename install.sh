@@ -89,13 +89,24 @@ main() {
   arch="$(detect_arch)"
   asset="ralph-engine-cli-${os}-${arch}"
 
-  # canal -> release (tag) via API. stable usa /releases/latest (exclui pre-release);
-  # beta usa /releases?per_page=1 (mais recente, inclui pre-release).
+  # canal -> release (tag) via API. stable usa /releases/latest (exclui pre-release).
+  # beta resolve pelo release mais recentemente PUBLICADO (published_at), nunca pela
+  # ordem da API: todos os releases de ralph-engine-releases compartilham o mesmo
+  # created_at (backfill), e o desempate por tag_name é lexicográfico — "beta.99" >
+  # "beta.103" (9 > 1). published_at (ISO-8601, largura fixa) ordena cronologicamente
+  # de forma correta em qualquer SO. Sem jq (regra local do repo).
   local -a hdr=(-H "Authorization: Bearer ${TOKEN}" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28")
   if [ "${CHANNEL}" = "stable" ]; then
     json="$(curl -fsSL "${hdr[@]}" "${API}/releases/latest")"
   else
-    json="$(curl -fsSL "${hdr[@]}" "${API}/releases?per_page=1")"
+    tag="$(curl -fsSL "${hdr[@]}" "${API}/releases?per_page=100" \
+      | grep -oE '"(tag_name|published_at)":[[:space:]]*"[^"]+"' \
+      | awk -F'"' '
+          $2 == "tag_name"     { t = $4 }
+          $2 == "published_at" { print $4 "\t" t }
+        ' \
+      | sort -r | head -n1 | cut -f2)"
+    json="$(curl -fsSL "${hdr[@]}" "${API}/releases/tags/${tag}")"
   fi
   tag="$(printf '%s' "$json" | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -n1)"
 
